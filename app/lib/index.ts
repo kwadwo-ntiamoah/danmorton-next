@@ -13,7 +13,8 @@ export const defaultSession: SessionData = {
 }
 
 export const sessionOptions: SessionOptions = {
-    password: process.env.AUTH_SECRET!,
+    // password: process.env.AUTH_SECRET!,
+    password: "YrshV8bUfYhb5PUhRyNap634Dyn3msiA3DygwaOkkms=",
     cookieName: "jemma-session",
     cookieOptions: {
         httpOnly: true,

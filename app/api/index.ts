@@ -5,7 +5,8 @@ export const invokePostAsync = async (request: NextRequest, path: string) => {
   try {
     var payload = await request.json();
 
-    var url = process.env.API_URL;
+    // var url = process.env.API_URL;
+    var url = "https://long-tree.shipeazi.com/api"
     var response = await axios.post(`${url}/${path}`, payload);
 
     if (response.status === 200 || response.status === 201) {
@@ -36,7 +37,8 @@ export const invokePostAsync = async (request: NextRequest, path: string) => {
 
 export const invokeGetAsync = async (request: NextRequest, path: string) => {
   try {
-    var url = process.env.API_URL;
+    // var url = process.env.API_URL;
+    var url = "https://long-tree.shipeazi.com/api"
     var response = await axios.get(url + "/" + path);
 
     if (response.status === 200 || response.status === 201) {
