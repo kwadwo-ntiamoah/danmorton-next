@@ -39,12 +39,20 @@ export const CatalogTableItem = ({
         </p>
       </TableCell>
       <TableCell>
+      <div className="flex space-x-2">
       <Button
             size="xs"
             color="dark"
           >
             Edit
           </Button>
+          <Button
+            size="xs"
+            color="red"
+          >
+            Delete
+          </Button>
+      </div>
       </TableCell>
     </TableRow>
   );

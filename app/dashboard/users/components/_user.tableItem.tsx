@@ -10,7 +10,9 @@ export const UserTableItem = ({
 }) => {
   return (
     <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-      
+      <TableCell>
+        <p className="uppercase text-xs">{user?.email}</p>
+      </TableCell>
       <TableCell>
         <p className="uppercase text-xs">{user?.otherNames}</p>
       </TableCell>

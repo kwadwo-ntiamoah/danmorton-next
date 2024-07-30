@@ -18,6 +18,7 @@ export const UsersTable = async () => {
     <div className="overflow-x-auto">
       <Table>
         <TableHead>
+          <TableHeadCell>Email</TableHeadCell>
           <TableHeadCell>Othernames</TableHeadCell>
           <TableHeadCell>Lastnamef</TableHeadCell>
           <TableHeadCell>Role</TableHeadCell>

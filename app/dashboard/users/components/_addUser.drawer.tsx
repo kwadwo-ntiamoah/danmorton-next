@@ -1,5 +1,6 @@
 import { HiShoppingCart } from "react-icons/hi";
 import { Drawer, Button } from "flowbite-react";
+import { AddUserForm } from "./_addUser.form";
 
 export interface UserDrawerProps {
     isOpen: boolean;
@@ -19,9 +20,10 @@ export const AddUserDrawer = (props: UserDrawerProps) => {
       <Drawer.Items>
         <div className="flex flex-col p-2 space-y-5">
           <p className="text-sm">
-            Simply increase count of item to add them to a basket
+            Provide details of new User
           </p>
           
+          <AddUserForm />
         </div>
       </Drawer.Items>
     </Drawer>

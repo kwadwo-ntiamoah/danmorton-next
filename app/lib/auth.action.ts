@@ -6,10 +6,6 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import axios from "axios"
 import { ApiResponse } from "../api"
-import { error } from "console"
-
-let defaultUsername = "admin@admin.com"
-let defaultRole = "Administrator"
 
 export const getSessionAsync = async () => {
     const session = await getIronSession<SessionData>(cookies(), sessionOptions)
@@ -33,6 +29,28 @@ export const getUsersAsync = async (): Promise<User[]> => {
     }
 
     return []
+}
+
+export const addUserAsync = async(_: FormState, formData: FormData) => {
+    const email = formData.get("email") as string
+    const otherNames = formData.get("otherNames") as string
+    const lastName = formData.get("lastName") as string
+    const role = formData.get("role") as string
+
+    var payload = { email, otherNames, lastName, role }
+
+    console.log(payload)
+
+    var url = process.env.BASE_URL + "/api/auth/createUser"
+
+    var res = await axios.post(url, payload)
+    var resObj: ApiResponse = res.data
+
+    if (resObj.status) {
+        redirect("/dashboard/users")
+    }
+
+    return { error: resObj.message }
 }
 
 export const loginAsync = async (prevState: FormState, formData: FormData) => {
@@ -81,5 +99,6 @@ export interface TokenResponse {
 export interface User {
     otherNames: string
     lastName: string
+    email: string
     role: string
 }
