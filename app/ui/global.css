@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply text-sm text-slate-700 
+}
+
+.form-control {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:border-gray-500 focus:ring-gray-500 !important
+}
+
+.form-control-item-card {
+    @apply text-slate-600 uppercase text-xs tracking-widest border-b border-dotted border-0 w-full bg-transparent p-0 focus:ring-0 !important
+}
+
+.link {
+    @apply flex grow items-center rounded-lg justify-center gap-2 text-sm hover:text-slate-700 font-medium hover:bg-slate-100 md:flex-none md:justify-start md:p-2 md:px-3
+}
