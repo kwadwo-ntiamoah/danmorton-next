@@ -38,7 +38,7 @@ export const InvoiceDrawer = (props: InvoiceDrawerProps) => {
       setState({ isLoading: false, message: res.message });
     } else {
       var invoice: Invoice = JSON.parse(JSON.stringify(res.data))
-      router.push("/dashboard/invoice/" + invoice.id)
+      router.push("/dashboard/invoices/" + invoice.id)
     }
   };
 
