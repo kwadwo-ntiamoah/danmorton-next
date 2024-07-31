@@ -4,15 +4,14 @@ import { BasketItem } from "@/app/lib/basket.action";
 import { BasketItemDetails } from "./_basket.item";
 
 export interface BasketItemsDrawerProps {
-    isOpen: boolean;
-    handleClose: () => void;
-    basketItems: BasketItem[]
-  }
-  
+  isOpen: boolean;
+  handleClose: () => void;
+  basketItems: BasketItem[];
+}
 
 export const BasketItemsDrawer = (props: BasketItemsDrawerProps) => {
-    return (
-        <Drawer
+  return (
+    <Drawer
       open={props.isOpen}
       onClose={props.handleClose}
       position="right"
@@ -21,20 +20,21 @@ export const BasketItemsDrawer = (props: BasketItemsDrawerProps) => {
       <Drawer.Header titleIcon={HiShoppingCart} title="Add Item" />
       <Drawer.Items>
         <div className="flex flex-col p-2 space-y-5">
-          <p className="text-sm">
-            Break down for Items in Basket
-          </p>
-          
-          <div className="grid grid-cols-2 gap-5">
-          {
-            props.basketItems.length && props.basketItems.map(item => (
-              <BasketItemDetails item={item} />
-            ))
-          }
+          <div className="flex items-center justify-between">
+            <p className="text-sm">Break down for Items in Basket</p>
+            <Button color="light" size="sm">
+              Start Washing
+            </Button>
           </div>
-          
+
+          <div className="grid grid-cols-2 gap-5">
+            {props.basketItems.length &&
+              props.basketItems.map((item) => (
+                <BasketItemDetails item={item} />
+              ))}
+          </div>
         </div>
       </Drawer.Items>
     </Drawer>
-    )
-}
+  );
+};
