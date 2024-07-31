@@ -30,7 +30,7 @@ export const BasketItemsDrawer = (props: BasketItemsDrawerProps) => {
           <div className="grid grid-cols-2 gap-5">
             {props.basketItems.length &&
               props.basketItems.map((item) => (
-                <BasketItemDetails item={item} />
+                <BasketItemDetails item={item} key={item.id}/>
               ))}
           </div>
         </div>
