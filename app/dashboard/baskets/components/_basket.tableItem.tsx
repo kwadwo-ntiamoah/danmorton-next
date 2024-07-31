@@ -4,6 +4,7 @@ import { CatalogItem } from "@/app/lib/catalogs.action";
 import { TableRow, TableCell, Button } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewBasketItemsButton } from "./_viewItemsDrawer.button";
 
 export const BasketTableItem = ({
   basket,
@@ -33,9 +34,7 @@ export const BasketTableItem = ({
         <p className="uppercase text-xs">{basket?.basketItems.length}</p>
       </TableCell>
       <TableCell>
-        <Button size="xs" color="dark">
-          View
-        </Button>
+        <ViewBasketItemsButton basketItems={basket?.basketItems} />
       </TableCell>
     </TableRow>
   );
