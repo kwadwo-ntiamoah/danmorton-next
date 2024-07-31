@@ -101,23 +101,23 @@ export const CustomerBreakDownCharts = () => {
     return (
         <div className="grid grid-cols-2 gap-5">
         <div className="border-slate-400 bg-slate-50 rounded-lg p-6">
-          <p className="text-lg">Top Coupons</p>
-          <p className="text-xs">Last 7 days</p>
+          <p className="text-lg">Payments</p>
+          <p className="text-xs">...</p>
         </div>
 
         <div className="border-slate-400 bg-slate-50 rounded-lg p-6">
-          <p className="text-lg">Top Coupons</p>
-          <p className="text-xs">Last 7 days</p>
+          <p className="text-lg">Customers</p>
+          <p className="text-xs">3</p>
         </div>
 
         <div className="border-slate-400 bg-slate-50 rounded-lg p-6">
-          <p className="text-lg">Top Coupons</p>
-          <p className="text-xs">Last 7 days</p>
+          <p className="text-lg">Users</p>
+          <p className="text-xs">2</p>
         </div>
 
         <div className="border-slate-400 bg-slate-50 rounded-lg p-6">
-          <p className="text-lg">Top Coupons</p>
-          <p className="text-xs">Last 7 days</p>
+          <p className="text-lg">Catalog Items</p>
+          <p className="text-xs">3</p>
         </div>
       </div>
     )
