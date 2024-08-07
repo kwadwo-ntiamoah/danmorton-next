@@ -7,9 +7,6 @@ export const invokePostAsync = async (request: NextRequest, path: string) => {
 
     // var url = process.env.API_URL;
     var url = process.env.NODE_ENV == "production" ? "https://long-tree.shipeazi.com/api" : process.env.API_URL;
-    console.log("#######################")
-    console.log(url)
-
     var response = await axios.post(`${url}/${path}`, payload);
 
     if (response.status === 200 || response.status === 201) {

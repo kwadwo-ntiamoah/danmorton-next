@@ -8,14 +8,14 @@ export const InvoiceService = ({ setSelectedService }: { setSelectedService: (se
 
   return (
     <>
-      <p className="hidden border-t pt-5">Select Service</p>
+      <p className="border-t pt-5">Select Service</p>
       <div className="grid grid-cols-2 gap-5">
         <div className="border-2 border-blue-500 rounded-lg p-5">
           <p className="text-center">Dry Cleaning</p>
         </div>
-        <div className="border-2 rounded-lg p-5">
+        {/* <div className="border-2 rounded-lg p-5">
           <p className="text-center">Pressing & Ironing</p>
-        </div>
+        </div> */}
       </div>
     </>
   );
