@@ -1,9 +1,5 @@
-import { User } from "@/app/lib/auth.action";
 import { Basket } from "@/app/lib/basket.action";
-import { CatalogItem } from "@/app/lib/catalogs.action";
-import { TableRow, TableCell, Button } from "flowbite-react";
-import Image from "next/image";
-import Link from "next/link";
+import { TableRow, TableCell, } from "flowbite-react";
 import { ViewBasketItemsButton } from "./_viewItemsDrawer.button";
 
 export const BasketTableItem = ({

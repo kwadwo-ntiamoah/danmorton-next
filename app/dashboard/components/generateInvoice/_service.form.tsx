@@ -4,7 +4,7 @@ export const InvoiceService = ({ setSelectedService }: { setSelectedService: (se
 
   useEffect(() => {
     setSelectedService("a9ef39ff-2a3e-4edb-a745-0dc9e1adddcd")
-  }, [])
+  }, [setSelectedService])
 
   return (
     <>
