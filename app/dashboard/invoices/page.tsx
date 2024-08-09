@@ -1,7 +1,17 @@
+import { getAllInvoicesAsync, Invoice } from "@/app/lib/invoices.action";
 import { OpenInvoiceDrawerButton } from "../components";
 import { InvoiceTable } from "./components/_invoice.table";
 
-const Page = async () => {
+const Page = async ({
+  searchParams,
+}: {
+  searchParams?: {
+    customerName?: string;
+  };
+}) => {
+  const res = await getAllInvoicesAsync(searchParams?.customerName ?? "")
+  var invoices: Invoice[] = JSON.parse(JSON.stringify(res))
+
   return (
     <div className="flex flex-col space-y-10 p-8">
       <div className="flex justify-between items-center">
@@ -13,7 +23,7 @@ const Page = async () => {
         <OpenInvoiceDrawerButton />
       </div>
 
-      <InvoiceTable />
+      <InvoiceTable invoices={invoices}/>
     </div>
   );
 };

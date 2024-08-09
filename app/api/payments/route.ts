@@ -6,5 +6,8 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  return await invokeGetAsync(request, "payment")
+  var { search } = request.nextUrl;
+  var url = "payment" + search;
+
+  return await invokeGetAsync(request, url)
 }

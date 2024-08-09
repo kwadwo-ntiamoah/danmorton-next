@@ -29,7 +29,7 @@ export const NavDetails = async () => {
         <div className="flex space-x-2 items-center">
           <div className="flex flex-col items-end">
             <p>
-              {session?.otherNames} {session?.lastName}
+              {session?.fullName}
             </p>
             <p className="text-xs">{session.role}</p>
           </div>
@@ -43,7 +43,7 @@ export const NavDetails = async () => {
     >
       <DropdownHeader>
         <span className="block text-sm">
-          {session.otherNames} {session.lastName}
+        {session?.fullName}
         </span>
         <span className="block truncate text-xs font-medium">
           {session.role}

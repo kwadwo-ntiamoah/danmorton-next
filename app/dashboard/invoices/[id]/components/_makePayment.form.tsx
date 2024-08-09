@@ -40,6 +40,13 @@ export const PaymentForm = ({ invoice }: { invoice: Invoice }) => {
           className="form-control"
           type="hidden"
         />
+        <input
+          id="paidBy"
+          name="paidBy"
+          value={invoice?.billTo.name}
+          className="form-control"
+          type="hidden"
+        />
       </div>
       <div>
         <div className="mb-2 block">
@@ -58,16 +65,17 @@ export const PaymentForm = ({ invoice }: { invoice: Invoice }) => {
         <div className="mb-2 block">
           <Label
             htmlFor="password"
-            value={`Amount to pay (${invoice?.totalPrice.currency})`}
+            value={`Amount to pay (${invoice?.totalAmount.currency})`}
           />
         </div>
         <input
           type="number"
           id="amount"
-          disabled
           name="amount"
+          max={(invoice?.totalAmount.amount - invoice?.amountPaid.amount).toString()}
+          min = "0"
           className="form-control"
-          value={invoice?.totalPrice.amount}
+          defaultValue={invoice?.totalAmount.amount}
         />
       </div>
       <div>

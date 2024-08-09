@@ -3,9 +3,10 @@ import { HiOutlineChevronLeft } from "react-icons/hi";
 import { InvoiceCard, MakePaymentButton } from "./components";
 import { Button } from "flowbite-react";
 import { getInvoiceAsync, Invoice } from "@/app/lib/invoices.action";
-import { InvoiceStatus } from "@/app/lib";
+import { InvoiceStatus, PaymentStatus } from "@/app/lib";
 import notFoundImage from "@/public/images/empty.png"
 import Image from "next/image";
+import { getProductsCatalogAsync } from "@/app/lib/catalogs.action";
 
 const InvoiceDetails = async ({ params }: { params: { id: string } }) => {
   const res = await getInvoiceAsync(params.id);
@@ -22,7 +23,7 @@ const InvoiceDetails = async ({ params }: { params: { id: string } }) => {
     )
   }
 
-  var invoice = JSON.parse(JSON.stringify(res));
+  var invoice: Invoice = JSON.parse(JSON.stringify(res));
 
   return (
     <div className="flex justify-center">
@@ -41,8 +42,7 @@ const InvoiceDetails = async ({ params }: { params: { id: string } }) => {
                 Invoice # {invoice?.invoiceNumber}
               </p>
               <p>
-                Invoice breakdown for basket{" "}
-                <span className="text-black font-semibold"># </span>
+                Invoice breakdown for basket
               </p>
             </div>
           </div>
@@ -57,22 +57,28 @@ const InvoiceDetails = async ({ params }: { params: { id: string } }) => {
                 <p>Accra, Ghana</p>
               </div>
               <div className="flex flex-col items-end">
-                <p>Invoice #{invoice?.invoiceNumber}</p>
-                <p>{invoice?.billRecipient?.name}</p>
-                <p>{invoice?.billRecipient?.phone}</p>
+                <p>{invoice.billTo.name}</p>
+                <p>{invoice?.billTo?.address}</p>
+                <p>{invoice?.billTo?.contact}</p>
               </div>
             </div>
 
             <InvoiceCard invoice={invoice!} />
           </div>
 
+          <div className="flex w-full justify-between">
           <div className="flex justify-between space-x-2 pb-10">
-            {invoice?.status == InvoiceStatus.PENDING && (
+            {invoice?.paymentStatus != PaymentStatus.FULLY_PAID && (
               <div className="flex space-x-2">
                 <Button color="dark">Cancel</Button>
                 <MakePaymentButton invoice={invoice} />
               </div>
             )}
+          </div>
+
+          <div>
+          <Button>Download Receipt</Button>
+          </div>
           </div>
         </div>
       </div>

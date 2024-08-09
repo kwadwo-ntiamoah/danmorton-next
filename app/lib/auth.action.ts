@@ -18,7 +18,7 @@ export const getSessionAsync = async () => {
 }
 
 export const getUsersAsync = async (): Promise<User[]> => {
-    var url = process.env.BASE_URL! + "/api/auth"
+    var url = process.env.BASE_URL! + "/api/auth/user"
 
     var res = await axios.get(url)
     var resObj: ApiResponse = res.data
@@ -33,15 +33,14 @@ export const getUsersAsync = async (): Promise<User[]> => {
 
 export const addUserAsync = async(_: FormState, formData: FormData) => {
     const email = formData.get("email") as string
-    const otherNames = formData.get("otherNames") as string
-    const lastName = formData.get("lastName") as string
+    const fullName = formData.get("fullName") as string
     const role = formData.get("role") as string
 
-    var payload = { email, otherNames, lastName, role }
+    var payload = { email, fullName, role }
 
     console.log(payload)
 
-    var url = process.env.BASE_URL + "/api/auth/createUser"
+    var url = process.env.BASE_URL + "/api/auth/user"
 
     var res = await axios.post(url, payload)
     var resObj: ApiResponse = res.data
@@ -71,10 +70,9 @@ export const loginAsync = async (prevState: FormState, formData: FormData) => {
         var tempData: TokenResponse = JSON.parse(JSON.stringify(resObj.data))
         
         session.token = tempData.token
-        session.lastName = tempData.user.lastName
-        session.otherNames = tempData.user.otherNames
+        session.fullName = tempData.fullName
         session.isLoggedIn = true
-        session.role = tempData.user.role
+        session.role = tempData.role
 
         await session.save()
         redirect("/dashboard")
@@ -92,13 +90,12 @@ export const logoutAsync = async () => {
 
 export interface TokenResponse {
     token: string
-    user: User
-    shouldChangePassword: boolean
+    fullName: string
+    role: string
 }
 
 export interface User {
-    otherNames: string
-    lastName: string
-    email: string
+    fullName: string
     role: string
+    email: string
 }

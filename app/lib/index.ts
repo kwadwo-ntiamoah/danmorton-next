@@ -2,8 +2,7 @@ import { SessionOptions } from "iron-session"
 
 export interface SessionData {
     token?: string
-    otherNames?: string
-    lastName?: string
+    fullName?: string
     role?: string
     isLoggedIn: boolean
 }
@@ -41,4 +40,8 @@ export enum BasketWashStatus {
 
 export enum PaymentType {
     CASH, MOBILE_MONEY, BANK_TRANSFER
+}
+
+export enum PaymentStatus {
+    NOT_PAID, PAID_PARTIALLY, FULLY_PAID, CANCELLED
 }

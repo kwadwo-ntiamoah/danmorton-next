@@ -22,9 +22,13 @@ export const makePaymentAsync = async (prevState: FormState, formData: FormData)
 
     const invoiceId = formData.get("invoiceId") as string
     const paymentType = formData.get("paymentMethod") as string
+    const amount = parseFloat(formData.get("amount") as string)
+    const paidBy = formData.get("paidBy") as string
 
     var payload = { 
         invoiceId, 
+        amount,
+        paidBy,
         paymentType: parseInt(paymentType)
     }
     var url = process.env.BASE_URL! + "/api/payments"
@@ -43,8 +47,8 @@ export const makePaymentAsync = async (prevState: FormState, formData: FormData)
 export interface Payment {
     id: string
     amountPaid: Price
-    paymentType: PaymentType
+    paymentMethod: PaymentType
     invoiceId: string
-    paidInByName: string
-    paidInByEmail: string
+    paidBy: string
+    dateCreated: string
 }

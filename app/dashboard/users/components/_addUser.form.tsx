@@ -29,26 +29,14 @@ export const AddUserForm = () => {
       </div>
       <div>
         <div className="mb-2 block">
-          <Label htmlFor="password" value="Othernames" />
+          <Label htmlFor="password" value="Fullname" />
         </div>
         <input
-          id="otherNames"
-          name="otherNames"
+          id="fullName"
+          name="fullName"
           required
           className="form-control"
           placeholder="Nana Kwaku"
-        />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="password" value="Lastname" />
-        </div>
-        <input
-          id="lastName"
-          name="lastName"
-          required
-          className="form-control"
-          placeholder="Ofori"
         />
       </div>
 

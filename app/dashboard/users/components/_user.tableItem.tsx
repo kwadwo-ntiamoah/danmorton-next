@@ -4,21 +4,23 @@ import { TableRow, TableCell, Button } from "flowbite-react";
 import Link from "next/link";
 
 export const UserTableItem = ({
-  user
+  user,
+  index
 }: {
+  index: number
   user: User;
 }) => {
   return (
     <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <TableCell>
-        <p className="uppercase text-xs">{user?.email}</p>
+        <p className="uppercase text-xs">{index + 1}</p>
       </TableCell>
       <TableCell>
-        <p className="uppercase text-xs">{user?.otherNames}</p>
+        <p className="text-xs">{user?.email}</p>
       </TableCell>
       <TableCell>
         <p className="uppercase text-xs">
-          {user?.lastName}
+          {user?.fullName}
         </p>
       </TableCell>
       <TableCell>

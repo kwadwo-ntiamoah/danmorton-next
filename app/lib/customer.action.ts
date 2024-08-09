@@ -17,6 +17,7 @@ export const getAllCustomersAsync = async () => {
 export interface Customer {
     id?: string
     name: string
-    email: string
-    phone: string
+    contact: string
+    address: string
+    dateCreated: string
 }

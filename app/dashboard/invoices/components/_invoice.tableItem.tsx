@@ -23,19 +23,25 @@ export const InvoiceTableItem = ({
         <p className="text-xs uppercase">{invoice.invoiceItems.length} Items</p>
       </TableCell>
       <TableCell>
-        <p className="uppercase text-xs">{invoice.billRecipient.name}</p>
-        <p className="text-xs">{invoice.billRecipient.phone}</p>
+        <p className="uppercase text-xs">{invoice.billTo.name}</p>
+        <p className="text-xs">{invoice.billTo.contact}</p>
       </TableCell>
       <TableCell>
         <p className="text-xs">
-          {invoice.totalPrice.currency} {invoice.totalPrice.amount}
+          {invoice.totalAmount.currency} {invoice.totalAmount.amount}
         </p>
         <p className="text-xs">{invoice.discount} %</p>
       </TableCell>
+      <TableCell>
+        <p className="text-xs">
+          {invoice.totalAmount.currency} {invoice.amountPaid.amount}
+        </p>
+      </TableCell>
       <TableCell className="font-bold">
-        { invoice.status == 0 && <p className="text-orange-500 uppercase text-[0.7rem]">PENDING</p>}
-        { invoice.status == 1 && <p className="text-green-500 uppercase text-[0.7rem]">PAID</p>}
-        { invoice.status == 2 && <p className="text-green-500 uppercase text-[0.7rem]">CANCELLED</p>}
+        { invoice.paymentStatus == 0 && <p className="text-orange-500 uppercase text-[0.7rem]">NOT PAID</p>}
+        { invoice.paymentStatus == 1 && <p className="text-slate-500 uppercase text-[0.7rem]">PAID PARTIALLY</p>}
+        { invoice.paymentStatus == 2 && <p className="text-green-500 uppercase text-[0.7rem]">FULLY PAID</p>}
+        { invoice.paymentStatus == 3 && <p className="text-red-600 uppercase text-[0.7rem]">CANCELLED</p>}
       </TableCell>
       <TableCell>
         <div className="flex space-x-2">

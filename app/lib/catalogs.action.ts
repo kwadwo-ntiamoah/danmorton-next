@@ -3,36 +3,46 @@
 import axios from "axios"
 import { FormState, Price } from "."
 import { ApiResponse } from "../api"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 
-export const getItemsCatalogAsync = async (): Promise<CatalogItem[]> => {
-    var url = process.env.BASE_URL! + "/api/catalogs"
+export const getItemsCatalogAsync = async (): Promise<Item[]> => {
+    var url = process.env.BASE_URL! + "/api/catalogs/items"
 
     var res = await axios.get(url)
     var resObj: ApiResponse = res.data
 
     if (resObj.status) {
-        var tempData: CatalogItem[] = JSON.parse(JSON.stringify(resObj.data))
+        var tempData: Item[] = JSON.parse(JSON.stringify(resObj.data))
         return tempData
     }
 
     return []
 }
 
-export const addItemCatalogAsync = async(_: FormState, formData: FormData) => {
-    const name = formData.get("name") as string
-    const amount = formData.get("amount") as string
-    const imagePath = formData.get("imagePath") as string
-    const currency = formData.get("currency") as string
+export const getProductsCatalogAsync = async (): Promise<Product[]> => {
+    var url = process.env.BASE_URL! + "/api/catalogs/products"
 
-    var items = { name, amount, imagePath, currency }
-    var payload = {
-        items: [
-            items
-        ]
+    var res = await axios.get(url)
+    var resObj: ApiResponse = res.data
+
+    if (resObj.status) {
+        var tempData: Product[] = JSON.parse(JSON.stringify(resObj.data))
+        return tempData
     }
 
-    var url = process.env.BASE_URL + "/api/catalogs"
+    return []
+}
+
+export const addItemCatalogAsync = async(services: ItemService[], _: FormState, formData: FormData) => {
+    const name = formData.get("name") as string
+    const image = formData.get("image") as string
+    
+    var payload = {
+        name, image,
+        services
+    }
+
+    var url = process.env.BASE_URL + "/api/catalogs/items"
 
     var res = await axios.post(url, payload)
     var resObj: ApiResponse = res.data
@@ -44,10 +54,30 @@ export const addItemCatalogAsync = async(_: FormState, formData: FormData) => {
     return { error: resObj.message }
 }
 
-export interface CatalogItem {
+export const deleteItemCatalogAsync = async(id: string) => {
+    var url = process.env.BASE_URL + "/api/catalogs/items/delete/" + id
+    var res = await axios.post(url, {})
+    var resObj: ApiResponse = res.data
+    
+    if (resObj.status) {
+        redirect("/dashboard/catalog")
+    }
+}
+
+export interface Item {
     id: string
     name: string
-    imagePath: string
+    image: string
+    dateCreated: string
+    services: ItemService[]
+}
+
+export interface ItemService {
+    id?: string
+    name: string
     price: Price
 }
 
+export interface Product {
+    name: string
+}

@@ -12,9 +12,9 @@ export const CustomerTable = async () => {
       <Table>
         <TableHead>
           <TableHeadCell>Customer</TableHeadCell>
-          <TableHeadCell>Address</TableHeadCell>
           <TableHeadCell>Email</TableHeadCell>
-          <TableHeadCell>No. Of Visits</TableHeadCell>
+          <TableHeadCell>Phone</TableHeadCell>
+          <TableHeadCell>Date Joined</TableHeadCell>
           <TableHeadCell>...</TableHeadCell>
         </TableHead>
         <TableBody className="divide-y">

@@ -23,18 +23,22 @@ export const BasketItemDetails = (props: BasketItemDetailsProps) => {
           <option value="Blue">Blue</option>
           <option value="White">White</option>
         </select>
-        <input type="text" className="form-control col-span-2" placeholder="Material" />
-        <div className="col-span-3">
+        <input
+          type="text"
+          className="form-control col-span-2"
+          placeholder="Material"
+        />
+        <div className="col-span-4">
           <textarea
             className="form-control"
             placeholder="Description for Item"
           />
         </div>
-        <div className="w-full flex items-center">
-        <Button size="xs" color="dark" className="w-full">
-          Update
-        </Button>
-        </div>
+        {/* <div className="w-full flex items-center">
+          <Button size="xs" color="dark" className="w-full">
+            Update
+          </Button>
+        </div> */}
       </div>
     </div>
   );

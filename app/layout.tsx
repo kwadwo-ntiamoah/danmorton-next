@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} antialiased`}>
+      <body className={`${nunito.className} antialiased`} suppressHydrationWarning={true}>
         <div className="hidden md:block">{children}</div>
 
         <div className="relative h-screen flex md:hidden md:h-0 overflow-hidden">

@@ -19,15 +19,16 @@ export const PaymentTable = async () => {
       <Table>
         <TableHead>
           <TableHeadCell>#</TableHeadCell>
+          <TableHeadCell>Date</TableHeadCell>
           <TableHeadCell>Invoice </TableHeadCell>
-          <TableHeadCell>PaymentType</TableHeadCell>
+          <TableHeadCell>Payment Type</TableHeadCell>
           <TableHeadCell>Amount</TableHeadCell>
           <TableHeadCell>Paid In By</TableHeadCell>
           <TableHeadCell>...</TableHeadCell>
         </TableHead>
         <TableBody className="divide-y">
           {
-            items?.length && (
+            items?.length > 0 && (
               items.map((item, index) => (
                 <PaymentTableItem payment={item} id={index + 1} key={item.id} />
               ))

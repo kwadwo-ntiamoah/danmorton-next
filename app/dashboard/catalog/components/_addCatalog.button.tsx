@@ -4,8 +4,9 @@ import { HiFolderDownload } from "react-icons/hi";
 import { Button } from "flowbite-react"
 import { useState } from "react";
 import { AddCatalogDrawer } from "./_addCatalog.drawer";
+import { Product } from "@/app/lib/catalogs.action";
 
-export const AddCatalogButton = () => {
+export const AddCatalogButton = ({ products }: { products: Product[] }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleClose = () => {
@@ -19,7 +20,7 @@ export const AddCatalogButton = () => {
         Add Item
       </Button>
 
-      <AddCatalogDrawer isOpen={isOpen} handleClose={handleClose} />
+      <AddCatalogDrawer products={products} isOpen={isOpen} handleClose={handleClose} />
     </>
     )
 }

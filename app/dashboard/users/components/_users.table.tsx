@@ -6,7 +6,6 @@ import {
   TableBody,
 } from "flowbite-react";
 import { UserTableItem } from "./_user.tableItem";
-import { getAllCustomersAsync } from "@/app/lib/customer.action";
 import { getUsersAsync, User } from "@/app/lib/auth.action";
 
 export const UsersTable = async () => {
@@ -18,9 +17,9 @@ export const UsersTable = async () => {
     <div className="overflow-x-auto">
       <Table>
         <TableHead>
+          <TableHeadCell>#</TableHeadCell>
           <TableHeadCell>Email</TableHeadCell>
-          <TableHeadCell>Othernames</TableHeadCell>
-          <TableHeadCell>Lastnamef</TableHeadCell>
+          <TableHeadCell>FullName</TableHeadCell>
           <TableHeadCell>Role</TableHeadCell>
           <TableHeadCell>...</TableHeadCell>
         </TableHead>
@@ -28,7 +27,7 @@ export const UsersTable = async () => {
           {
             users?.length && (
               users.map((user, key) => (
-                <UserTableItem user={user} key={key} />
+                <UserTableItem index={key} user={user} key={key} />
               ))
             )
           }

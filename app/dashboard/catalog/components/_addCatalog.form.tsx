@@ -2,15 +2,55 @@
 
 import { FormState } from "@/app/lib";
 import { addUserAsync } from "@/app/lib/auth.action";
-import { addItemCatalogAsync } from "@/app/lib/catalogs.action";
+import {
+  addItemCatalogAsync,
+  ItemService,
+  Product,
+} from "@/app/lib/catalogs.action";
 import { ErrorAlert } from "@/app/ui/common/alerts";
 import { Label, Checkbox, Button, Spinner } from "flowbite-react";
+import { FormEvent, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
-export const AddCatalogForm = () => {
-  const [state, formAction] = useFormState<FormState, FormData>(addItemCatalogAsync, {
-    error: undefined,
-  });
+export const AddCatalogForm = ({ products }: { products: Product[] }) => {
+  const [services, setServices] = useState<ItemService[]>([]);
+
+  const updateItemWithServices = addItemCatalogAsync.bind(null, services);
+
+  const [state, formAction] = useFormState<FormState, FormData>(
+    updateItemWithServices,
+    {
+      error: undefined,
+    }
+  );
+
+  const updateServicePrice = (serviceName: string, newPrice: string) => {
+    const updatedServices = services.map(service => {
+      return service.name == serviceName ? { ...service, price: { ...service.price, amount: parseFloat(newPrice) } } : service
+    })
+
+    setServices(updatedServices)
+  }
+
+  useEffect(() => {
+    // create services with product
+    var tempServices: ItemService[] = [];
+
+    products.forEach(product => {
+      var item: ItemService = {
+        name: product.name,
+        price: {
+          amount: 0.00,
+          currency: "GHS"
+        }
+      }
+
+      tempServices.push(item)
+    })
+
+    setServices(tempServices)
+
+  }, [])
 
   return (
     <form className="flex w-full flex-col gap-5" action={formAction}>
@@ -29,37 +69,52 @@ export const AddCatalogForm = () => {
       </div>
       <div>
         <div className="mb-2 block">
-          <Label htmlFor="amount" value="Unit Price" />
+          <Label htmlFor="imagePath" value="Image" />
         </div>
         <input
-          id="amount"
-          name="amount"
-          required
-          className="form-control"
-          placeholder="2"
-        />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="imagePath" value="ImagePath" />
-        </div>
-        <input
-          id="imagePath"
-          name="imagePath"
+          id="image"
+          name="image"
           required
           className="form-control"
           placeholder="https://res.cloudinary.com/jojo/blouse.png"
         />
       </div>
 
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="currency" value="Currency" />
-        </div>
-        <select name="currency" id="currency" className="form-control" defaultValue="" required>
-            <option value="" disabled>-- Select Currency --</option>
-            <option value="GHS">GHS</option>
-        </select>
+      <div className="flex flex-col space-y-5">
+        {
+          services.length > 0 && services.map((service, index) => (
+            <div className="w-full grid grid-cols-2 space-x-2" key={index}>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor={service.name + "_service"} value="Service" />
+                </div>
+                <input
+                  id={service.name}
+                  name={service.name}
+                  required
+                  className="form-control"
+                  defaultValue={service.name}
+                  disabled
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="amount" value="Amount" />
+                </div>
+                <input
+                  type="number"
+                  id={service.name + "_amount"}
+                  name={service.name + "_amount"}
+                  defaultValue={service?.price.amount}
+                  onChange={(e) => updateServicePrice(service.name, e.target.value)}
+                  required
+                  className="form-control"
+                  placeholder="0.00"
+                />
+              </div>
+            </div>
+          ))
+        }
       </div>
 
       <AddUserBtn />

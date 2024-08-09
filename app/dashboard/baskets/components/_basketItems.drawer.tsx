@@ -15,7 +15,7 @@ export const BasketItemsDrawer = (props: BasketItemsDrawerProps) => {
       open={props.isOpen}
       onClose={props.handleClose}
       position="right"
-      className="w-3/5"
+      className="w-1/2"
     >
       <Drawer.Header titleIcon={HiShoppingCart} title="Add Item" />
       <Drawer.Items>
@@ -32,6 +32,10 @@ export const BasketItemsDrawer = (props: BasketItemsDrawerProps) => {
               props.basketItems.map((item) => (
                 <BasketItemDetails item={item} key={item.id}/>
               ))}
+          </div>
+
+          <div className="w-full">
+            <Button className="w-full" color="dark">Update</Button>
           </div>
         </div>
       </Drawer.Items>
